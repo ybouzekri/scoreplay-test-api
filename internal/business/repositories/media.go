@@ -10,6 +10,6 @@ var (
 )
 
 type MediaRepository interface {
-	FindByTag(tag *entities.TagEntity) (*entities.MediaEntity, error)
+	FindByTag(tag *entities.TagEntity) ([]*entities.MediaEntity, error)
 	Persist(media *entities.MediaEntity) (*entities.MediaEntity, error)
 }

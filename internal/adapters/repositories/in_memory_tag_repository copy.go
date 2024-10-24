@@ -1,10 +1,14 @@
 package repositories
 
 import (
+	"errors"
 	"log/slog"
 	"scoreplay/internal/business/entities"
+	"slices"
 	"sync"
 )
+
+var ErrInvalidTag = errors.New("invalid tag")
 
 type InMemoryTagRepository struct {
 	storage []*entities.TagEntity
@@ -25,7 +29,11 @@ func (repo *InMemoryTagRepository) FindAll() ([]*entities.TagEntity, error) {
 }
 
 func (repo *InMemoryTagRepository) FindByID(id int) (*entities.TagEntity, error) {
-	panic("not implemented")
+	tagIndex := slices.IndexFunc(repo.storage, func(tag *entities.TagEntity) bool { return tag.ID() == id })
+	if tagIndex == -1 {
+		return repo.storage[tagIndex], nil
+	}
+	return nil, ErrInvalidTag
 }
 
 func (repo *InMemoryTagRepository) Persist(tag *entities.TagEntity) (*entities.TagEntity, error) {
