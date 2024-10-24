@@ -1,7 +1,6 @@
 package repositories
 
 import (
-	"errors"
 	"log/slog"
 	"scoreplay/internal/business/entities"
 	"slices"
@@ -9,8 +8,6 @@ import (
 
 	"github.com/google/uuid"
 )
-
-var ErrInvalidMedia = errors.New("invalid media")
 
 type InMemoryMediaRepository struct {
 	storage []*entities.MediaEntity
