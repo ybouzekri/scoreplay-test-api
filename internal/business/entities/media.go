@@ -15,7 +15,7 @@ var (
 
 type MediaEntity struct {
 	id      uuid.UUID
-	picture []byte
+	picture string
 	name    string
 	tags    []*TagEntity
 }
@@ -29,7 +29,7 @@ func WithMediaID(id uuid.UUID) MediaEntityOption {
 }
 
 func NewMediaEntity(
-	picture []byte,
+	picture string,
 	name string,
 	tags []*TagEntity,
 	options ...MediaEntityOption,
@@ -69,7 +69,7 @@ func (entity *MediaEntity) ID() uuid.UUID {
 	return entity.id
 }
 
-func (entity *MediaEntity) Picture() []byte {
+func (entity *MediaEntity) Picture() string {
 	return entity.picture
 }
 

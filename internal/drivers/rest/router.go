@@ -19,16 +19,19 @@ func NewRouter(logger *slog.Logger) *http.ServeMux {
 	createTagUseCase := usecases.NewCreateTagInteractor(tagRepository, logger)
 
 	getMediaByTagUseCase := usecases.NewGetMediaByTagInteractor(mediaRepository, tagRepository, logger)
+	createMediaUseCase := usecases.NewCreateMediaInteractor(mediaRepository, tagRepository, logger)
 
 	listTagsHandler := handlers.NewListTagsHandler(listAllTagsUseCase, logger)
 	createTagHandler := handlers.NewCreateTagHandler(createTagUseCase, logger)
 
 	getMediaByTagHandler := handlers.NewGetMediaByTagHandler(getMediaByTagUseCase, logger)
+	createMediaHandler := handlers.NewCreateMediaHandler(createMediaUseCase, logger)
 
 	router.Handle("GET /tags", listTagsHandler)
 	router.Handle("POST /tags", createTagHandler)
 
 	router.Handle("GET /media", getMediaByTagHandler)
+	router.Handle("GET /media", createMediaHandler)
 
 	return router
 }

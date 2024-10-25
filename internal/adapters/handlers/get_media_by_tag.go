@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log/slog"
 	"net/http"
 	"scoreplay/internal/business/entities"
@@ -26,7 +27,7 @@ func newMediaResponseFromEntity(entity *entities.MediaEntity) mediaResponse {
 		ID:      entity.ID().String(),
 		Name:    entity.Name(),
 		Tags:    tagNames,
-		FileUrl: string(entity.Picture()),
+		FileUrl: fmt.Sprintf("http://0.0.0.0:8888/images/%s", entity.Picture()),
 	}
 }
 

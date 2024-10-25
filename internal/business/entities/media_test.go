@@ -13,7 +13,7 @@ func TestNewMediaEntityWithOptions(t *testing.T) {
 	id, err := uuid.NewRandom()
 	assert.NoError(err)
 
-	picture := []byte("some image data")
+	picture := "some image name"
 	name := "some media name"
 
 	footballTag, err := entities.NewTagEntity("football", entities.WithTagID(42))
@@ -41,7 +41,7 @@ func TestNewMediaEntityWithOptions(t *testing.T) {
 func TestNewMediaEntityValidation(t *testing.T) {
 	assert := assert.New(t)
 
-	picture := []byte("some picture data")
+	picture := "some picture name"
 	name := "some media name"
 
 	footballTag, err := entities.NewTagEntity("football", entities.WithTagID(42))
@@ -60,7 +60,7 @@ func TestNewMediaEntityValidation(t *testing.T) {
 	testCases := map[string]testCase{
 		"empty picture data": {
 			sut: func() (*entities.MediaEntity, error) {
-				return entities.NewMediaEntity([]byte{}, name, tags)
+				return entities.NewMediaEntity("", name, tags)
 			},
 			expectedError: entities.ErrEmptyPicture,
 		},
