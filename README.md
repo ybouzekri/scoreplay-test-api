@@ -24,6 +24,7 @@ Thus there is three main parts in the app:
 
 ## What to improve
 - writing more tests, adding specific cases in functional tests
+- Secure file upload
 - Adding a real DB instead of in memory
 - Adding cache on top with decorators over the repositories
 - Adding metrics with prom or open telemetry to monitor the system and how it behaves
