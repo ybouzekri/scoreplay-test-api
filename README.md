@@ -22,6 +22,11 @@ Thus there is three main parts in the app:
 - driver:
     - rest: contains all the routes and server for the rest api
 
+I chose to go with clean archi as it largely used in the industry today which makes it well documented.
+It also allows to dive quickly into the business code, making it clearer, easy to ready, maintain and evolve
+
+I chose also to keep the repositories as in memory instead of a bdd, so I can focus more on the architure of the code which is important and using clean architecture makes adding a bdd easier
+
 ## What to improve
 - writing more tests, adding specific cases in functional tests
 - Secure file upload
@@ -30,3 +35,4 @@ Thus there is three main parts in the app:
 - Adding metrics with prom or open telemetry to monitor the system and how it behaves
 - Dockerise the app
 - Add readiness and liveness endpoints in case of a kubernetes deploy
+- We can add FindByIDs for tags to replace [this part](https://github.com/ybouzekri/scoreplay-test-api/blob/master/internal/business/usecases/create_media.go#L35)

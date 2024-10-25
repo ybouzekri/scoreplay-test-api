@@ -10,6 +10,7 @@ import (
 	"strconv"
 )
 
+// media response output
 type mediaResponse struct {
 	ID      string   `json:"id"`
 	Name    string   `json:"name"`
@@ -56,23 +57,22 @@ func NewGetMediaByTagHandler(useCase usecases.GetMediaByTagUseCase, logger *slog
 
 func (h *GetMediaByTagHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
+	// Get tag query param
 	tag := r.URL.Query().Get("tag")
 	if tag == "" {
-		h.logger.Error("get media by tag handler unexpected error", "error", "No tag query found")
-		response := responseError{code: http.StatusInternalServerError, Message: "unexpected error"}
+		response := responseError{code: http.StatusBadRequest, Message: "Error tag query should be provided"}
 		response.send(w)
 		return
 	}
+	// validate its an int
 	tagID, err := strconv.Atoi(tag)
 	if err != nil {
-		h.logger.Error("get media by tag handler unexpected error", "error", err)
-		response := responseError{code: http.StatusInternalServerError, Message: "unexpected error"}
+		response := responseError{code: http.StatusBadRequest, Message: "Error tag should be an integer"}
 		response.send(w)
 		return
 	}
 	entities, err := h.useCase.Handle(tagID)
 	if err != nil {
-		h.logger.Error("get media by tag handler unexpected error", "error", err)
 		response := responseError{code: http.StatusInternalServerError, Message: "unexpected error"}
 		response.send(w)
 		return

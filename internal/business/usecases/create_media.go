@@ -22,6 +22,7 @@ type CreateMediaInteractor struct {
 	logger    *slog.Logger
 }
 
+// return the interactor which handle the use case of media creation
 func NewCreateMediaInteractor(mediaRepo repositories.MediaRepository, tagRepo repositories.TagRepository, logger *slog.Logger) *CreateMediaInteractor {
 	return &CreateMediaInteractor{
 		mediaRepo: mediaRepo,

@@ -19,6 +19,7 @@ type CreateTagInteractor struct {
 	logger *slog.Logger
 }
 
+// return the interactor which handle the use case of media creation
 func NewCreateTagInteractor(repo repositories.TagRepository, logger *slog.Logger) *CreateTagInteractor {
 	return &CreateTagInteractor{
 		repo:   repo,

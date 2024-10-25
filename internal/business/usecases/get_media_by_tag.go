@@ -16,6 +16,7 @@ type GetMediaByTagInteractor struct {
 	logger          *slog.Logger
 }
 
+// return the interactor which handle the use case of getting all media attached to a tag
 func NewGetMediaByTagInteractor(mediaRepository repositories.MediaRepository, tagRepository repositories.TagRepository, logger *slog.Logger) *GetMediaByTagInteractor {
 	return &GetMediaByTagInteractor{
 		mediaRepository: mediaRepository,

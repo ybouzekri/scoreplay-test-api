@@ -15,6 +15,7 @@ type ListAllTagsInteractor struct {
 	logger     *slog.Logger
 }
 
+// return the interactor which handle the use case of listing all available tags
 func NewListAllTagsInteractor(repository repositories.TagRepository, logger *slog.Logger) *ListAllTagsInteractor {
 	return &ListAllTagsInteractor{
 		repository: repository,

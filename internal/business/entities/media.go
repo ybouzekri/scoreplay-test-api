@@ -28,6 +28,9 @@ func WithMediaID(id uuid.UUID) MediaEntityOption {
 	}
 }
 
+// creates a new media entity, the optional functions are here to ease the construction of entities that are valide but in incomplete states
+// such as during creation the entity ID is determined by the database, so we should be able to create the entity without the ID
+// However the ID is the entity's identity and must be immutable, the option pattern in Go solves this issue by making certain parameters optional
 func NewMediaEntity(
 	picture string,
 	name string,
