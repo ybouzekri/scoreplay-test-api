@@ -30,6 +30,7 @@ func NewCreateMediaHandler(useCase usecases.CreateMediaUseCase, logger *slog.Log
 }
 
 func (h *CreateMediaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("content-type", "application/json")
 	// Parse our multipart form, 10 << 20 specifies a maximum
 	// upload of 10 MB files.
 	r.ParseMultipartForm(10 << 20)
